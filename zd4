@@ -1,0 +1,81 @@
+#include <iostream>
+#include <map>
+int main()
+{
+std::map<int, int> homen;
+std::map<int, int>::iterator it;
+std::cout << "Write how many houses are on the street: "; 
+int amount;
+std::cin >> amount;
+std::cout << std::endl;
+std::string command;
+for(int i = 1; i <= amount; i++ )
+{
+    std::cout << "Write how many people live in the house number " << i << " : ";
+    int people;
+    std::cin >> people;
+    homen[i] = people;   
+};
+while(true)
+{
+    std::cout << "command: ";
+    std::cin >> command; std::cout << std::endl;
+    if(command == "0"||command == "0 ")
+    {
+        int number;
+        std::cout << "Write number of the house: ";
+        std::cin >> number;
+        it = homen.find(number);
+        if(it == homen.end())
+        {
+            std::cout << std::endl;
+            std::cout << "There is no house with number:" << number << std::endl;
+        }
+        else
+        {
+            std::cout << std::endl;
+            std::cout << "There is house with number: " << number << std::endl;
+            std::cout << homen[number] << " people lives there" << std::endl; 
+        }
+    }
+    else if(command == "1"||command == "1 ")
+    {
+        int number;
+        std::cout << "Write the number of the house you want to delete: ";
+        std::cin >> number;
+        it = homen.find(number);
+        if(it == homen.end())
+        {
+            std::cout << "unknown number" << std::endl;
+        }
+        else
+        {
+            homen.erase(number);
+            std::cout << "The house with this number is deleted" << std::endl;
+        };
+    }
+    else if(command == "2"||command == "2 ")
+    {
+        int number;
+        std::cout << "Type new number of a house: ";
+        std::cin >> number; std::cout << std::endl;
+        it = homen.find(number);
+        if(it == homen.end())
+        {
+            int people;
+            std::cout << "How many people will live there: ";
+            std::cin >> people; std::cout << std::endl;
+            homen[number] = people;
+            std::cout << "The house under this number was created" << std::endl;
+        }
+        else
+        {
+            std::cout << "There is alredy house with number: " << number << std::endl;
+        };
+    }
+    else
+    {
+        std::cout << "unknown command" << std::endl; 
+    };
+};
+}
