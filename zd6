@@ -1,0 +1,32 @@
+#include <SFML/Graphics.hpp>
+udisng namespace sf;
+int main()
+{
+    ConrextSettings settings;
+    settings.antialiasingLevel = 8;
+    RenderWindow window(VideoMode(640,480),"SFML Works!");
+    while(window.isOpen())
+    {
+        Event event;
+        while(window.pollEvent(event))
+        {
+            if(event.type == Event::Closed)
+            window.close();  
+        }
+        window.clear(Color(250,220,100,0));
+
+        ConvexShape convex;
+        convex.setPointCount(6);
+        convex.setPoint(0,Vector2f(0.f,0.f));
+        convex.setPoint(1,Vector2f(150.f,10.f));
+        convex.setPoint(2,Vector2f(120.f,90.f));
+        convex.setPoint(3,Vector2f(80.f,100.f));
+        convex.setPoint(4,Vector2f(30.f,50.f));
+        convex.setPoint(4,Vector2f(15.f,20.f));
+        convex.setFillColor(Color::Black);
+        convex.move(1,150);
+        window.draw(convex);
+        window.display();
+    }
+    return 0;
+}
